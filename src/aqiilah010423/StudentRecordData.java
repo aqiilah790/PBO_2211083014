@@ -10,8 +10,8 @@ package aqiilah010423;
  */
 public class StudentRecordData {
     public static void main(String[] args){
-        StudentRecord dataSiswa[] = new StudentRecord[100];
-        StudentRecord d1 = new StudentRecord();
+        StudentRecord2 dataSiswa[] = new StudentRecord2[100];
+        StudentRecord2 d1 = new StudentRecord2();
         d1.setName("aqiil");
         d1.setAddress("Padang");
         d1.setAge(19);
