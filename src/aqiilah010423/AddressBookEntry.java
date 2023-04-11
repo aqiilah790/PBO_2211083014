@@ -14,7 +14,7 @@ public class AddressBookEntry {
     private String phone_number;
     private String email;
     
-    public AddressBookEntry(String name, String address, String phone_number, String email) {
+    public AddressBookEntry() {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
