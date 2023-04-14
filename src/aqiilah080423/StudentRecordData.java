@@ -24,9 +24,7 @@ public class StudentRecordData {
         System.out.println("\nNew student record:");
         student.printRecord();
         
-        System.out.println();
-        ComputerScienceStudentRecord student2 = new ComputerScienceStudentRecord("Jane Smith", 20, 11, false, "Java", true);
-        student2.printRecord();
+        
     }
 }
 
