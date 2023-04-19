@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package aqiilah.controller;
+package aqiilah150423.controller;
 
 /**
  *
  * @author User
  */
-import aqiilah.view.FormAnggota;
-import aqiilah.model.*;
+import aqiilah150423.view.FormAnggota;
+import aqiilah150423.model.*;
 import javax.swing.table.DefaultTableModel;
 
 public class AnggotaController {

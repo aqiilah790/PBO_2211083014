@@ -8,10 +8,11 @@ import java.util.List;
  *
  * @author User
  */
-public interface AnggotaDao {
-    void save(Anggota anggota);
-    void update(int index, Anggota anggota);
+public interface BukuDao {
+    void save(Buku buku);
+    void update(int index, Buku buku);
     void delete(int index);
-    Anggota getAnggota(int index);
-    List<Anggota> getAll();
+    Buku getBuku(int index);
+    List<Buku> getAll();
+    
 }

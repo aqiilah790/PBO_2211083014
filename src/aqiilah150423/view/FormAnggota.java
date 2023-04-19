@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package aqiilah.view;
-import aqiilah.controller.AnggotaController;
+package aqiilah150423.view;
+import aqiilah150423.controller.AnggotaController;
 /**
  *
  * @author User
