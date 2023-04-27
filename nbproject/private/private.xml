@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/PBO_2211083014/src/aqiilah080423/StudentRecordExample3.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/BukuDaoImpl.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah150423/controller/PeminjamanController.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/AnggotaDaoImpl.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/Buku.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/AnggotaDao.java</file>
@@ -16,8 +17,11 @@
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/controller/BukuController.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/Anggota.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah010423/StudentRecordExample.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah150423/view/FormPeminjaman.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah010423/StudentRecordExample2.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/BukuDao.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/PeminjamanDao.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah150423/model/PeminjamanDaoImpl.java</file>
         </group>
     </open-files>
 </project-private>

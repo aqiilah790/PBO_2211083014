@@ -8,43 +8,53 @@ package aqiilah150423.model;
  *
  * @author User
  */
-import java.util.Date;
+
 public class Peminjaman {
-    private Date tglpinjam;
-    private Date tglkembali;
-    private Buku buku;
-    private Anggota anggota;
-
-    public Date getTglpinjam() {
-        return tglpinjam;
+    private String nobp;
+    private String kodebuku;
+    private String tglpinjam;
+    private String tglkembali;
+    
+    public Peminjaman() {
     }
-
-    public void setTglpinjam(Date tglpinjam) {
+    
+    public Peminjaman(String nobp, String kodebuku, String tglpinjam, String tglkembali) {
+        this.nobp = nobp;
+        this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
-    }
-
-    public Date getTglkembali() {
-        return tglkembali;
-    }
-
-    public void setTglkembali(Date tglkembali) {
         this.tglkembali = tglkembali;
     }
 
-    public Buku getBuku() {
-        return buku;
+    public String getNobp(){
+        return nobp;
     }
 
-    public void setBuku(Buku buku) {
-        this.buku = buku;
+    public void setNobp(String nobp) {
+        this.nobp = nobp;
     }
 
-    public Anggota getAnggota() {
-        return anggota;
+    public String getKodebuku() {
+        return kodebuku;
     }
 
-    public void setAnggota(Anggota anggota) {
-        this.anggota = anggota;
+    public void setKodebuku(String kodebuku) {
+        this.kodebuku = kodebuku;
+    }
+
+    public String getTglpinjam() {
+        return tglpinjam;
+    }
+
+    public void setTglpinjam(String tglpinjam) {
+        this.tglpinjam = tglpinjam;
+    }
+
+    public String getTglkembali() {
+        return tglkembali;
+    }
+
+    public void setTglkembali(String tglkembali) {
+        this.tglkembali = tglkembali;
     }
 }
 
