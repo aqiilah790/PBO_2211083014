@@ -19,14 +19,14 @@ public class PengembalianController {
     
     private Peminjaman peminjaman;
     
-    private AnggotaDao anggotaDao;
+    private AnggotaDao2 anggotaDao;
     private BukuDao bukuDao;
     
     public PengembalianController(FormPeminjaman form){
         this.form = form;
         pengembalianDao = new PengembalianDaoImpl();
         peminjamanDao = new PeminjamanDaoImpl();
-        anggotaDao = new AnggotaDaoImpl();
+        anggotaDao = new AnggotaDaoImpl2();
         bukuDao = new BukuDaoImpl();
     }
     public void bersihForm(){
@@ -35,13 +35,13 @@ public class PengembalianController {
         form.getTxtDikembalikan().setText("");
     }
     public void isiCombo(){
-        List<Anggota> listAnggota = anggotaDao.getAll();
+        List<Anggota2> listAnggota = anggotaDao.getAll();
         List<Buku> listBuku = bukuDao.getAll();
         form.getCboAnggota().removeAllItems();
         form.getCboBuku().removeAllItems();
         
         //isi
-        for(Anggota anggota : listAnggota){
+        for(Anggota2 anggota : listAnggota){
             form.getCboAnggota().addItem(anggota.getNobp());
         }
         for(Buku buku : listBuku){

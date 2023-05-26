@@ -10,7 +10,7 @@ package aqiilah270423.model;
  */
 
 public class Peminjaman {
-    private Anggota anggota;
+    private Anggota2 anggota;
     private Buku buku;
     private String tglpinjam;
     private String tglkembali;
@@ -18,18 +18,18 @@ public class Peminjaman {
     public Peminjaman() {
     }
     
-    public Peminjaman(Anggota anggota, Buku buku, String tglpinjam, String tglkembali) {
+    public Peminjaman(Anggota2 anggota, Buku buku, String tglpinjam, String tglkembali) {
         this.anggota = anggota;
         this.buku = buku;
         this.tglpinjam = tglpinjam;
         this.tglkembali = tglkembali;
     }
 
-    public Anggota getAnggota(){
+    public Anggota2 getAnggota(){
         return anggota;
     }
 
-    public void setAnggota(Anggota anggota) {
+    public void setAnggota(Anggota2 anggota) {
         this.anggota = anggota;
     }
 

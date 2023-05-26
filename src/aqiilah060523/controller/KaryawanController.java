@@ -10,19 +10,90 @@ package aqiilah060523.controller;
  */
 import aqiilah060523.view.FormKaryawan;
 import aqiilah060523.model.*;
-import java.util.*;
+//import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 public class KaryawanController {
-    private FormKaryawan formKaryawan;
+    private FormKaryawan form;
     private KaryawanDao karyawanDao;
     private Karyawan karyawan;
-    private Orang orang;
     
-    public KaryawanController(FormKaryawan formKaryawan){
-    this.formKaryawan  = formKaryawan;
+    public KaryawanController(FormKaryawan form){
+    this.form  = form;
     karyawanDao = new KaryawanDaoImpl();
     }
     
+    public void cls(){
+        form.getTxtNama().setText("");
+        form.getTxtAlamat().setText("");
+        form.getTxtStatus().setText("");
+        form.getTxtNip().setText("");
+        form.getCboGolongan().setSelectedItem("");
+        form.getTxtJabatan().setText("");
+        form.getCboJumlahanak().setSelectedItem("");
+    }
     
+    public void saveKaryawan(){
+        karyawan = new Karyawan();
+        karyawan.setNama(form.getTxtNama().getText());
+        karyawan.setAlamat(form.getTxtAlamat().getText());
+        karyawan.setStatus(form.getTxtStatus().getText());
+        karyawan.setNip(form.getTxtNip().getText());
+        karyawan.setGolongan(form.getCboGolongan().getSelectedItem().toString());
+        karyawan.setJabatan(form.getTxtJabatan().getText());
+        karyawan.setJumlahanak(Integer.parseInt(form.getCboJumlahanak().toString()));
+        karyawanDao.insert(karyawan);
+        javax.swing.JOptionPane.showMessageDialog(form, "Entri Ok");
+    }
+    
+    public void getKaryawan(){
+        int index = form.getTblKaryawan().getSelectedRow();
+        karyawan = karyawanDao.getKaryawan(index);
+        if(karyawan != null){
+            form.getTxtNama().setText(karyawan.getNama());
+            form.getTxtAlamat().setText(karyawan.getAlamat());
+            form.getTxtStatus().setText(karyawan.getStatus());
+            form.getTxtNip().setText(karyawan.getNip());
+            form.getCboGolongan().setSelectedItem(karyawan.getGolongan());
+            form.getTxtJabatan().setText(karyawan.getJabatan());
+            form.getCboJumlahanak().setSelectedItem(Integer.toString(karyawan.getJumlahanak()));
+        }
+    }
+    
+    public void updateBuku(){
+        int index = form.getTblKaryawan().getSelectedRow();
+        karyawan.setNama(form.getTxtNama().getText());
+        karyawan.setAlamat(form.getTxtAlamat().getText());
+        karyawan.setStatus(form.getTxtStatus().getText());
+        karyawan.setNip(form.getTxtNip().getText());
+        karyawan.setGolongan(form.getCboGolongan().getSelectedItem().toString());
+        karyawan.setJabatan(form.getTxtJabatan().getText());
+        karyawan.setJumlahanak(Integer.parseInt(form.getCboJumlahanak().getSelectedItem().toString()));
+        karyawanDao.update(index, karyawan);
+        javax.swing.JOptionPane.showMessageDialog(form, "Update Ok");
+    }
+
+    public void deleteBuku(){
+        int index = form.getTblKaryawan().getSelectedRow();
+        karyawanDao.delete(index);
+        javax.swing.JOptionPane.showMessageDialog(form, "Delete Ok");
+    }
+
+    public void tampilData(){
+        DefaultTableModel tabelModel = (DefaultTableModel) form.getTblKaryawan().getModel();
+        tabelModel.setRowCount(0);
+        java.util.List<Karyawan> list = karyawanDao.getAll();
+        for(Karyawan karyawan : list){
+            Object[] data = {
+                karyawan.getNama(),
+                karyawan.getAlamat(),
+                karyawan.getStatus(),
+                karyawan.getNip(),
+                karyawan.getGolongan(),
+                karyawan.getJabatan(),
+                karyawan.getJumlahanak()
+            };
+            tabelModel.addRow(data); 
+        }
+    }
 }

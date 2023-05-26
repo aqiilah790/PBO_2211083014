@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package aqiilah060523.model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author User
@@ -11,11 +12,14 @@ import java.util.*;
 public class KaryawanDaoImpl implements KaryawanDao {
     List<Karyawan> data = new ArrayList<>();
     
-    public void insert(Karyawan karyawan){
-        data.add(new Karyawan("aqill","padang","jomblo","2211083014","b","mahasiswa",'1'));
+    public KaryawanDaoImpl(){
+        data.add(new Karyawan("aqill","padang","jomblo","2211083014","1","mahasiswa",1));
+        //data.add(new Karyawan("budi","padang","jomblo","2211083014","2","mahasiswa",'2'));
+        //data.add(new Karyawan("tomo","padang","jomblo","2211083014","3","mahasiswa",'3'));
+        //data.add(new Karyawan("otsuka","padang","jomblo","2211083014","4","mahasiswa",'4'));
     }
     
-    public void save(Karyawan karyawan) {
+    public void insert(Karyawan karyawan){
         data.add(karyawan);
     }
     
@@ -35,3 +39,4 @@ public class KaryawanDaoImpl implements KaryawanDao {
         return data;
     }
 }
+

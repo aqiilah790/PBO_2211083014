@@ -9,7 +9,7 @@ import java.util.List;
  * @author User
  */
 public interface KaryawanDao {
-    void insert (Karyawan karyawan);
+    void insert(Karyawan karyawan);
     void update(int index, Karyawan karyawan);
     void delete(int index);
     Karyawan getKaryawan(int index);

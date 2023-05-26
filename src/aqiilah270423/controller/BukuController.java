@@ -8,16 +8,16 @@ package aqiilah270423.controller;
  *
  * @author User
  */
-import aqiilah270423.view.FormBuku;
+import aqiilah270423.view.FormBuku2;
 import aqiilah270423.model.*;
 import javax.swing.table.DefaultTableModel;
 
 public class BukuController {
-    private FormBuku formBuku;
+    private FormBuku2 formBuku;
     private BukuDao bukuDao;
     private Buku buku;
     
-    public BukuController(FormBuku formBuku){
+    public BukuController(FormBuku2 formBuku){
     this.formBuku = formBuku;
     bukuDao = new BukuDaoImpl();
     }

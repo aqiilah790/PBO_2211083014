@@ -29,7 +29,7 @@ public class Orang {
         return alamat;
     }
     
-    public String getStatusNikah(){
+    public String getStatus(){
         return statusnikah;
     }
     
@@ -41,7 +41,7 @@ public class Orang {
         this.alamat = alamat;    
     }
     
-    public void setStatusNikah(String statusnikah){
+    public void setStatus(String statusnikah){
         this.statusnikah = statusnikah;    
     }
 }

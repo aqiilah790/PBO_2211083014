@@ -8,18 +8,18 @@ package aqiilah270423.controller;
  *
  * @author User
  */
-import aqiilah270423.view.FormAnggota;
+import aqiilah270423.view.FormAnggota2;
 import aqiilah270423.model.*;
 import javax.swing.table.DefaultTableModel;
 
 public class AnggotaController {
-    private FormAnggota formAnggota;
-    private AnggotaDao anggotaDao;
-    private Anggota anggota;
+    private FormAnggota2 formAnggota;
+    private AnggotaDao2 anggotaDao;
+    private Anggota2 anggota;
     
-    public AnggotaController(FormAnggota formAnggota){
+    public AnggotaController(FormAnggota2 formAnggota){
         this.formAnggota = formAnggota;
-        anggotaDao = new AnggotaDaoImpl();
+        anggotaDao = new AnggotaDaoImpl2();
     }
     
     public void bersihForm(){
@@ -29,7 +29,7 @@ public class AnggotaController {
     }
     
     public void saveAnggota(){
-        anggota = new Anggota();
+        anggota = new Anggota2();
         anggota.setNobp(formAnggota.getTxtNobp().getText());
         anggota.setNama(formAnggota.getTxtNama().getText());
         anggota.setAlamat(formAnggota.getTxtAlamat().getText());
@@ -65,8 +65,8 @@ public class AnggotaController {
     public void tampilData(){
         DefaultTableModel tabelModel = (DefaultTableModel) formAnggota.getTblAnggota().getModel();
         tabelModel.setRowCount(0);
-        java.util.List<Anggota> list = anggotaDao.getAll();
-        for(Anggota anggota : list){
+        java.util.List<Anggota2> list = anggotaDao.getAll();
+        for(Anggota2 anggota : list){
             Object[] data = {
                 anggota.getNobp(),
                 anggota.getNama(),

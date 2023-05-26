@@ -18,14 +18,14 @@ public class PeminjamanController {
     private FormPeminjaman formPeminjaman;
     private PeminjamanDao peminjamanDao;
     private Peminjaman peminjaman;
-    private AnggotaDao anggotaDao;
+    private AnggotaDao2 anggotaDao;
     private BukuDao bukuDao;
 
 
 public PeminjamanController(FormPeminjaman formPeminjaman){
     this.formPeminjaman = formPeminjaman;
     peminjamanDao = new PeminjamanDaoImpl();
-    anggotaDao = new AnggotaDaoImpl();
+    anggotaDao = new AnggotaDaoImpl2();
     bukuDao = new BukuDaoImpl();
 }
 
@@ -35,13 +35,13 @@ public PeminjamanController(FormPeminjaman formPeminjaman){
     }
     
     public void isiCombo(){
-        List<Anggota> listAnggota = anggotaDao.getAll();
+        List<Anggota2> listAnggota = anggotaDao.getAll();
         List<Buku> listBuku = bukuDao.getAll();
         formPeminjaman.getCboAnggota().removeAllItems();
         formPeminjaman.getCboBuku().removeAllItems();
         
         //isi anggota
-        for (Anggota anggota : listAnggota){
+        for (Anggota2 anggota : listAnggota){
             formPeminjaman.getCboAnggota().addItem(anggota.getNobp());
         }
         

@@ -124,11 +124,11 @@ public class FormPeminjaman extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NoBp", "Buku", "tglPinjam", "tglKembali", "tglKembali", "Dikembalikan", "Terlambat", "Denda"
+                "NoBp", "Nama", "Kodebuku", "tglPinjam", "tglKembali", "Dikembalikan", "Terlambat", "Denda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
