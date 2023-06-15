@@ -40,6 +40,16 @@ public class Gaji2 {
     }
     
     public double getGajipokok(){
+        String IIIA = null;
+        String IIIB = null;
+        String IIIC = null;
+        if(golongan == IIIA){
+            gajipokok = 1000000;
+        }else if(golongan == IIIB){
+            gajipokok = 2000000;
+        }else if(golongan == IIIC){
+            gajipokok = 3000000;
+        }
         return gajipokok;
     } 
     
@@ -56,16 +66,7 @@ public class Gaji2 {
     }
     
     public void setGolongan(String golongan){
-        String IIIA = null;
-        String IIIB = null;
-        String IIIC = null;
-        if(golongan == IIIA){
-            gajipokok = 1000000;
-        }else if(golongan == IIIB){
-            gajipokok = 2000000;
-        }else if(golongan == IIIC){
-            gajipokok = 3000000;
-        }
+        this.golongan = golongan;
     }
     
     public void setTanggal(int tanggal){

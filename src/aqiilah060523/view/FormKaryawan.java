@@ -29,8 +29,8 @@ public class FormKaryawan extends javax.swing.JFrame {
         return txtAlamat;
     }
     
-    public javax.swing.JTextField getTxtStatus(){
-        return txtStatus;
+    public javax.swing.JComboBox getCboStatus(){
+        return CboStatus;
     }
     
     public javax.swing.JTextField getTxtNip(){
@@ -45,8 +45,8 @@ public class FormKaryawan extends javax.swing.JFrame {
         return txtJabatan;
     }
     
-    public javax.swing.JComboBox getCboJumlahanak(){
-        return CboJumlahanak;
+    public javax.swing.JTextField getTxtJumlahanak(){
+        return TxtJumlah;
     }
     
     public javax.swing.JTable getTblKaryawan(){
@@ -73,7 +73,6 @@ public class FormKaryawan extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtAlamat = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtNip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -87,7 +86,8 @@ public class FormKaryawan extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblKaryawan = new javax.swing.JTable();
         CboGolongan = new javax.swing.JComboBox<>();
-        CboJumlahanak = new javax.swing.JComboBox<>();
+        TxtJumlah = new javax.swing.JTextField();
+        CboStatus = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,13 +127,6 @@ public class FormKaryawan extends javax.swing.JFrame {
 
         jLabel3.setText("Status");
 
-        txtStatus.setText("jTextField3");
-        txtStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStatusActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Nip");
 
         txtNip.setText("jTextField4");
@@ -164,10 +157,25 @@ public class FormKaryawan extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         tblKaryawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,9 +203,11 @@ public class FormKaryawan extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblKaryawan);
 
-        CboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        CboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
 
-        CboJumlahanak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        TxtJumlah.setText("jTextField1");
+
+        CboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menikah", "Single", "Jomblo" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,13 +227,9 @@ public class FormKaryawan extends javax.swing.JFrame {
                                 .addGap(41, 41, 41)
                                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(56, 56, 56)
-                                .addComponent(txtNip))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CboJumlahanak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TxtJumlah))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -237,9 +243,13 @@ public class FormKaryawan extends javax.swing.JFrame {
                                         .addComponent(CboGolongan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
                                 .addGap(40, 40, 40)
-                                .addComponent(txtStatus))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNip)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(btnInsert)
@@ -268,7 +278,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -284,7 +294,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(CboJumlahanak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert)
@@ -318,9 +328,24 @@ public class FormKaryawan extends javax.swing.JFrame {
         controller.getKaryawan();
     }//GEN-LAST:event_tblKaryawanMouseClicked
 
-    private void txtStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStatusActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtStatusActionPerformed
+        controller.updateKaryawan();
+        controller.cls();
+        controller.tampilData();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        controller.deleteKaryawan();
+        controller.cls();
+        controller.tampilData();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        controller.cls();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,7 +384,8 @@ public class FormKaryawan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CboGolongan;
-    private javax.swing.JComboBox<String> CboJumlahanak;
+    private javax.swing.JComboBox<String> CboStatus;
+    private javax.swing.JTextField TxtJumlah;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
@@ -381,6 +407,5 @@ public class FormKaryawan extends javax.swing.JFrame {
     private javax.swing.JTextField txtJabatan;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNip;
-    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }

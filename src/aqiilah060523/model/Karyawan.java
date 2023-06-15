@@ -15,8 +15,11 @@ public class Karyawan extends Orang {
     private int jumlahanak;
     
         
-    public Karyawan(){
-        
+    public Karyawan(String nip, String golongan, String jabatan, int jumlahanak) {
+        this.nip = nip;
+        this.golongan = golongan;
+        this.jabatan = jabatan;
+        this.jumlahanak = jumlahanak;
     }
         
     public Karyawan(String nama, String alamat, String statusnikah, String nip, String golongan, String jabatan, int jumlahanak){
@@ -25,6 +28,10 @@ public class Karyawan extends Orang {
         this.golongan = golongan;
         this.jabatan = jabatan;
         this.jumlahanak = jumlahanak;
+        
+    }
+    
+    public Karyawan(){
         
     }
 

@@ -27,38 +27,89 @@ public class Gaji {
         this.year = year;
         setTotalgaji();
     }
-    
-    public Karyawan getKaryawan(){
+
+    public Karyawan getKaryawan() {
         return karyawan;
     }
-    
-    public Double getGajipokok(){
-        return gajipokok;
-    }
-    
-    public Double getTunjangananak(){
-        return tunjangananak;
-    }
-    
-    public Double getTunjanganistri(){
-        return tunjanganistri;
-    }
-    
-    public Double getTotalgaji(){
-        return totalgaji;
-    }
-    
-    public void setKaryawan(Karyawan karyawan){
+
+    public void setKaryawan(Karyawan karyawan) {
         this.karyawan = karyawan;
     }
-    
-    public void setMonths(int months){
+
+    public int getMonths() {
+        return months;
+    }
+
+    public void setMonths(int months) {
         this.months = months;
     }
-    public void setYear(int year){
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
         this.year = year;
     }
-    public void setMonths(int months){
-        this.months = months;
+
+    public double getGajipokok() {
+        if (karyawan.getGolongan().equals("A")) {
+            gajipokok = 5000000;
+        } else if (karyawan.getGolongan().equals("B")) {
+            gajipokok = 4000000;
+        } else if (karyawan.getGolongan().equals("C")) {
+            gajipokok = 3000000;
+        } else if (karyawan.getGolongan().equals("D")) {
+            gajipokok = 2000000;
+        } else {
+            gajipokok = 0;
+        }
+        return gajipokok;
     }
+
+    public void setGajipokok(double gajipokok) {
+        this.gajipokok = (gajipokok + tunjangananak + tunjanganistri);
+    }
+
+    public double getTunjangananak() {
+        if (karyawan.getStatus().equals("Single")) {
+            tunjangananak = 0;
+        } else {
+            tunjangananak = (0.2 * gajipokok * karyawan.getJumlahanak());
+        }
+        return tunjangananak;
+    }
+
+    public void setTunjangananak(double tunjangananak) {
+        this.tunjangananak = tunjangananak;
+    }
+
+    public double getTunjanganistri() {
+        if (karyawan.getStatus().equals("Single")) {
+            tunjanganistri = 0;
+        } else {
+            tunjanganistri = (0.2 * gajipokok);
+        }
+        return tunjanganistri;
+    }
+
+    public void setTunjanganistri(double tunjanganistri) {
+        this.tunjanganistri = tunjanganistri;
+    }
+
+    public double getTotalgaji() {
+        return (tunjangananak + tunjanganistri + gajipokok);
+    }
+
+    public void setTotalgaji(double totalgaji) {
+        this.totalgaji = totalgaji;
+    }
+    
+    public void setTotalgaji() {
+        this.totalgaji = tunjangananak + tunjanganistri + gajipokok;
+    }
+
+    
+    
+    
 }

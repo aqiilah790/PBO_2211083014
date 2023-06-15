@@ -26,22 +26,22 @@ public class KaryawanController {
     public void cls(){
         form.getTxtNama().setText("");
         form.getTxtAlamat().setText("");
-        form.getTxtStatus().setText("");
+        form.getCboStatus().setSelectedItem("");
         form.getTxtNip().setText("");
         form.getCboGolongan().setSelectedItem("");
         form.getTxtJabatan().setText("");
-        form.getCboJumlahanak().setSelectedItem("");
+        form.getTxtJumlahanak().setText("");
     }
     
     public void saveKaryawan(){
         karyawan = new Karyawan();
         karyawan.setNama(form.getTxtNama().getText());
         karyawan.setAlamat(form.getTxtAlamat().getText());
-        karyawan.setStatus(form.getTxtStatus().getText());
+        karyawan.setStatus(form.getCboStatus().getSelectedItem().toString());
         karyawan.setNip(form.getTxtNip().getText());
         karyawan.setGolongan(form.getCboGolongan().getSelectedItem().toString());
         karyawan.setJabatan(form.getTxtJabatan().getText());
-        karyawan.setJumlahanak(Integer.parseInt(form.getCboJumlahanak().toString()));
+        karyawan.setJumlahanak(Integer.parseInt(form.getTxtJumlahanak().getText()));
         karyawanDao.insert(karyawan);
         javax.swing.JOptionPane.showMessageDialog(form, "Entri Ok");
     }
@@ -52,28 +52,28 @@ public class KaryawanController {
         if(karyawan != null){
             form.getTxtNama().setText(karyawan.getNama());
             form.getTxtAlamat().setText(karyawan.getAlamat());
-            form.getTxtStatus().setText(karyawan.getStatus());
+            form.getCboStatus().setSelectedItem(karyawan.getStatus());
             form.getTxtNip().setText(karyawan.getNip());
             form.getCboGolongan().setSelectedItem(karyawan.getGolongan());
             form.getTxtJabatan().setText(karyawan.getJabatan());
-            form.getCboJumlahanak().setSelectedItem(Integer.toString(karyawan.getJumlahanak()));
+            form.getTxtJumlahanak().setText(Integer.toString(karyawan.getJumlahanak()));
         }
     }
     
-    public void updateBuku(){
+    public void updateKaryawan(){
         int index = form.getTblKaryawan().getSelectedRow();
         karyawan.setNama(form.getTxtNama().getText());
         karyawan.setAlamat(form.getTxtAlamat().getText());
-        karyawan.setStatus(form.getTxtStatus().getText());
+        karyawan.setStatus(form.getCboStatus().getSelectedItem().toString());
         karyawan.setNip(form.getTxtNip().getText());
         karyawan.setGolongan(form.getCboGolongan().getSelectedItem().toString());
         karyawan.setJabatan(form.getTxtJabatan().getText());
-        karyawan.setJumlahanak(Integer.parseInt(form.getCboJumlahanak().getSelectedItem().toString()));
+        karyawan.setJumlahanak(Integer.parseInt(form.getTxtJumlahanak().getText()));
         karyawanDao.update(index, karyawan);
         javax.swing.JOptionPane.showMessageDialog(form, "Update Ok");
     }
 
-    public void deleteBuku(){
+    public void deleteKaryawan(){
         int index = form.getTblKaryawan().getSelectedRow();
         karyawanDao.delete(index);
         javax.swing.JOptionPane.showMessageDialog(form, "Delete Ok");
