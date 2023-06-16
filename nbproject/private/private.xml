@@ -12,10 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/PBO_2211083014/src/aqiilah/view/FormAnggota.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah060523/model/PegawaiDaoImpl.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah/db/DbHelper.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah/controller/AnggotaController.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah/dao/anggotadaoimpl.java</file>
+            <file>file:/C:/PBO_2211083014/src/aqiilah060523/view/FormKaryawan.java</file>
             <file>file:/C:/PBO_2211083014/src/aqiilah/dao/anggotadao.java</file>
-            <file>file:/C:/PBO_2211083014/src/aqiilah/model/anggota.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,10 +5,15 @@
 package aqiilah.dao;
 
 import aqiilah.model.anggota;
+import java.util.*;
 /**
  *
  * @author User
  */
 public interface anggotadao {
     void insert(anggota anggota) throws Exception;
+    void update(String index,anggota anggota) throws Exception;
+    void delete(String index) throws Exception;
+    anggota getAnggota(String kodeanggota) throws Exception;
+    List<anggota> getAll() throws Exception;
 }
