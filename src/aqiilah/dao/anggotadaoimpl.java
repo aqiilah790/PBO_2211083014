@@ -30,23 +30,23 @@ public class anggotadaoimpl implements anggotadao{
         ps.close();
     }
     
-    public void update(String kode, anggota anggota) throws Exception {
-        String sql = "UPDATE  anggota SET kodeanggota = ?," + "namaanggota = ?, alamat = ?, jeniskelamin = ? "
-                + "WHERE kodeanggota =?";
+    public void update(anggota anggota) throws Exception {
+        String sql = "UPDATE  anggota SET namaanggota = ?, alamat=?, jeniskelamin=?, kodeanggota=? WHERE kodeanggota =?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, anggota.getKodeanggota());
-        ps.setString(2, anggota.getNamaanggota());
-        ps.setString(3, anggota.getAlamat());
-        ps.setString(4, anggota.getJeniskelamin());
-        ps.setString(5, kode);
+        ps.setString(4, anggota.getKodeanggota());
+        ps.setString(1, anggota.getNamaanggota());
+        ps.setString(2, anggota.getAlamat());
+        ps.setString(3, anggota.getJeniskelamin());
+        ps.setString(5, anggota.getKodeanggota());
+        
         ps.executeUpdate();
-        ps.close(); 
+        //ps.close(); 
     }
     
-    public void delete(String kode) throws Exception {
+    public void delete(anggota anggota) throws Exception {
         String sql = "DELETE FROM anggota WHERE kodeanggota =?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, kode);
+        ps.setString(1, anggota.getKodeanggota());
         ps.executeUpdate();
         ps.close(); 
     }
