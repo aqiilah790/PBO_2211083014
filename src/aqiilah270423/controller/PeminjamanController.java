@@ -35,6 +35,7 @@ public PeminjamanController(FormPeminjaman formPeminjaman){
     }
     
     public void isiCombo(){
+        
         List<Anggota2> listAnggota = anggotaDao.getAll();
         List<Buku> listBuku = bukuDao.getAll();
         formPeminjaman.getCboAnggota().removeAllItems();
