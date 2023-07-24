@@ -14,10 +14,8 @@ import java.util.*;
 public class GajiController {
     private Gaji gaji;
     private GajiDao gajiDao;
-    private PegawaiDaoImpl pegawaiDao;
+    private PegawaiDao pegawaiDao;
     private FormGaji form;
-    
-    private Pegawai pegawai;
     
     
     public GajiController(FormGaji form){
@@ -27,7 +25,6 @@ public class GajiController {
         
     }
     public void bersihForm(){
-        form.getTxtGolongan().setText("");
         form.getTxtTanggal().setText("");
     }
     
@@ -39,115 +36,73 @@ public class GajiController {
         for(Pegawai pegawai : listPegawai){
             form.getCboNip().addItem(pegawai.getNip());
         }
-        for(Buku buku : listBuku){
-            form.getCboBuku().addItem(buku.getKode());
-        }
-    }
-    public void savePeminjaman(){
-        peminjaman = new Peminjaman();
-        peminjaman.setAnggota(anggotaDao.getAnggota(form.getCboAnggota().getSelectedIndex()));
-        peminjaman.setBuku(bukuDao.getBuku(form.getCboBuku().getSelectedIndex()));
-        peminjaman.setTglpinjam(form.getTxtTglpinjam().getText());
-        peminjaman.setTglkembali(form.getTxtTglkembali().getText());
-        peminjamanDao.save(peminjaman);
         
-        pengembalian = new Pengembalian();
-        pengembalian.setDikembalikan("");
-        pengembalian.setTerlambat("");
-        pengembalian.setDenda();
-        pengembalianDao.save(pengembalian);
-        javax.swing.JOptionPane.showMessageDialog(form, "Saved");
+        form.getCbogol().removeAllItems();
+        form.getCbogol().addItem("IIIA");
+        form.getCbogol().addItem("IIIB");
+        form.getCbogol().addItem("IIIC");
         
     }
-    public void savePengembalian(){
-        int idx = form.getTblPeminjaman().getSelectedRow();
-        pengembalian.setDikembalikan(form.getTxtDikembalikan().getText());
-        pengembalian.setTerlambat(form.getTxtTglkembali().getText());
-        pengembalian.setDenda();
-        pengembalianDao.update(idx,pengembalian);
-        javax.swing.JOptionPane.showMessageDialog(form, "Saved");
+    public void saveGaji(){
+        gaji = new Gaji();
+        gaji.setPegawai(pegawaiDao.getPegawai(form.getCboNip().getSelectedIndex()));
+        gaji.setGolongan(form.getCbogol().getSelectedItem().toString());
+        gaji.setTanggal(form.getTxtTanggal().getText());
+        gaji.setTunjangananak();
+        gaji.setTunjanganistri();
+        gaji.setGajibersih();
+        gajiDao.insert(gaji);
+        javax.swing.JOptionPane.showMessageDialog(form, "Berhasil ditambahkan");
         
     }
-    public void getPeminjaman(){
-        int index = form.getTblPeminjaman().getSelectedRow();
-        peminjaman = peminjamanDao.getPeminjaman(index);
-        if(peminjaman != null){
-            form.getCboAnggota().setSelectedItem(peminjaman.getAnggota().getNobp());
-            form.getCboBuku().setSelectedItem(peminjaman.getBuku().getKode());
-            form.getTxtTglpinjam().setText(peminjaman.getTglpinjam());
-            form.getTxtTglkembali().setText(peminjaman.getTglkembali());
-        }
-        pengembalian = pengembalianDao.getPengembalian(index);
-        if(pengembalian != null){
-            form.getTxtDikembalikan().setText(pengembalian.getDikembalikan());
+    
+    
+    public void getGaji(){
+        int index = form.getTblGaji().getSelectedRow();
+        gaji = gajiDao.getGaji(index);
+        if(gaji != null){
+            form.getCboNip().setSelectedItem(gaji.getPegawai().getNip());
+            form.getCbogol().setSelectedItem(gaji.getGolongan());
+            form.getTxtTanggal().setText(gaji.getTanggal());
         }
     }
     
-    public void updatePeminjaman(){
-        int idx = form.getTblPeminjaman().getSelectedRow();
-        peminjaman.setAnggota(anggotaDao.getAnggota(form.getCboAnggota().getSelectedIndex()));
-        peminjaman.setBuku(bukuDao.getBuku(form.getCboBuku().getSelectedIndex()));
-        peminjaman.setTglpinjam(form.getTxtTglpinjam().getText());
-        peminjaman.setTglkembali(form.getTxtTglkembali().getText());
-        peminjamanDao.update(idx,peminjaman);
-        
-        pengembalian.setDikembalikan(form.getTxtDikembalikan().getText());
-        pengembalian.setTerlambat(form.getTxtTglkembali().getText());
-        pengembalian.setDenda();
-        pengembalianDao.update(idx,pengembalian);
-        javax.swing.JOptionPane.showMessageDialog(form, "Updated");
+    public void updateGaji(){
+        int index = form.getTblGaji().getSelectedRow();
+        gaji.setPegawai(pegawaiDao.getPegawai(form.getCboNip().getSelectedIndex()));
+        gaji.setGolongan(form.getCbogol().getSelectedItem().toString());
+        gaji.setTanggal(form.getTxtTanggal().getText());
+        gaji.setGajipokok(gaji.getGolongan());
+        gaji.setTunjangananak();
+        gaji.setTunjanganistri();
+        gaji.setGajibersih();
+        gajiDao.update(index,gaji);
+        javax.swing.JOptionPane.showMessageDialog(form, "Berhasil diubah");
     }
     
-    public void Kembalikan(){
-        int idx = form.getTblPeminjaman().getSelectedRow();
-        pengembalian.setDikembalikan(form.getTxtDikembalikan().getText());
-        pengembalian.setTerlambat(form.getTxtTglkembali().getText());
-        pengembalian.setDenda();
-        pengembalianDao.update(idx, pengembalian);
-        javax.swing.JOptionPane.showMessageDialog(form, "kembalikan");
-    }
-    
-    public void deletePeminjaman(){
-        int idx = form.getTblPeminjaman().getSelectedRow();
-        peminjamanDao.delete(idx);
-        pengembalianDao.delete(idx);
-        javax.swing.JOptionPane.showMessageDialog(form, "Deleted");
+    public void deleteGaji(){
+        int index = form.getTblGaji().getSelectedRow();
+        gajiDao.delete(index);
+        javax.swing.JOptionPane.showMessageDialog(form, "Berhasil dihapus");
     }
     
     public void tampilData() {
         DefaultTableModel tabelModel =
-                (DefaultTableModel) form.getTblPeminjaman().getModel();
+                (DefaultTableModel) form.getTblGaji().getModel();
         tabelModel.setRowCount(0);
-
-        // Mengambil data dari dua tabel
-        java.util.List<Pengembalian> listPengembalian = pengembalianDao.getAll();
-        java.util.List<Peminjaman> listPeminjaman = peminjamanDao.getAll();
-
-        // Menambahkan data dari kedua tabel ke dalam satu list
-        List<Object[]> dataGabungan = new ArrayList<>();
-        for (int i = 0; i < listPeminjaman.size(); i++) {
-            Peminjaman peminjaman = listPeminjaman.get(i);
-            Pengembalian pengembalian = null;
-            if (i < listPengembalian.size()) {
-                pengembalian = listPengembalian.get(i);
-            }
+        java.util.List<Gaji> listGaji = gajiDao.getAll();
+        for (Gaji gaji : listGaji) {
             Object[] data = {
-                peminjaman.getAnggota().getNobp(),
-                peminjaman.getAnggota().getNama(),
-                peminjaman.getBuku().getKode(),
-                peminjaman.getTglpinjam(),
-                peminjaman.getTglkembali(),
-                (pengembalian == null) ? "" : pengembalian.getDikembalikan(),
-                (pengembalian == null) ? "" : pengembalian.getTerlambat(),
-                (pengembalian == null) ? "" : pengembalian.getDenda()
+                gaji.getPegawai().getNip(),
+                gaji.getGolongan(),
+                gaji.getTanggal(),
+                gaji.getGajipokok(),
+                gaji.getTunjangananak(),
+                gaji.getTunjanganistri(),
+                gaji.getGajibersih()
             };
-            dataGabungan.add(data);
-        }
-
-        // Menambahkan data ke dalam tabel
-        for (Object[] data : dataGabungan) {
             tabelModel.addRow(data);
         }
     }
 }
-}
+

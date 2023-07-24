@@ -4,6 +4,10 @@
  */
 package UTS_B_aqiilah.view;
 
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import UTS_B_aqiilah.controller.GajiController;
 /**
  *
  * @author User
@@ -13,24 +17,32 @@ public class FormGaji extends javax.swing.JFrame {
     /**
      * Creates new form FormGaji
      */
+    GajiController cn;
     public FormGaji() {
         initComponents();
+        cn = new GajiController(this);
+        cn.bersihForm();
+        cn.isiCombo();
+        cn.tampilData();
     }
-    
-    public javax.swing.JComboBox getCboNip(){
+
+    public JComboBox<String> getCboNip() {
         return CboNip;
     }
-    
-    public javax.swing.JTextField getTxtGolongan(){
-        return TxtGolongan;
+
+    public JComboBox<String> getCbogol() {
+        return Cbogol;
     }
-    public javax.swing.JTextField getTxtTanggal(){
+
+    public JTextField getTxtTanggal() {
         return TxtTanggal;
     }
-    
-    public javax.swing.JTable getTblGaji(){
+
+    public JTable getTblGaji() {
         return tblGaji;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +56,6 @@ public class FormGaji extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TxtGolongan = new javax.swing.JTextField();
         TxtTanggal = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -53,6 +64,7 @@ public class FormGaji extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGaji = new javax.swing.JTable();
         CboNip = new javax.swing.JComboBox<>();
+        Cbogol = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,11 +74,14 @@ public class FormGaji extends javax.swing.JFrame {
 
         jLabel3.setText("Tanggal");
 
-        TxtGolongan.setText("jTextField2");
-
         TxtTanggal.setText("jTextField3");
 
         btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -83,21 +98,41 @@ public class FormGaji extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         tblGaji.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nip", "Golongan", "Tanggal", "null", "Title 5", "Title 6"
+                "Nip", "Golongan", "Tanggal", "gaji pokok", "tunjangan anak", "tunjangan istri", "gaji bersih"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblGaji.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGajiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGaji);
 
         CboNip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        Cbogol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +146,6 @@ public class FormGaji extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnInsert)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,11 +154,11 @@ public class FormGaji extends javax.swing.JFrame {
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancel))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TxtGolongan, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                        .addComponent(TxtTanggal))
-                    .addComponent(CboNip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(323, Short.MAX_VALUE))
+                    .addComponent(TxtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CboNip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cbogol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +170,7 @@ public class FormGaji extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TxtGolongan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cbogol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -149,7 +183,7 @@ public class FormGaji extends javax.swing.JFrame {
                     .addComponent(btnCancel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,11 +191,34 @@ public class FormGaji extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        cn.updateGaji();
+        cn.bersihForm();
+        cn.tampilData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        cn.deleteGaji();
+        cn.bersihForm();
+        cn.tampilData();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        // TODO add your handling code here:
+        cn.saveGaji();
+        cn.bersihForm();
+        cn.tampilData();
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        cn.bersihForm();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void tblGajiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGajiMouseClicked
+        // TODO add your handling code here:
+        cn.getGaji();
+    }//GEN-LAST:event_tblGajiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,7 +257,7 @@ public class FormGaji extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CboNip;
-    private javax.swing.JTextField TxtGolongan;
+    private javax.swing.JComboBox<String> Cbogol;
     private javax.swing.JTextField TxtTanggal;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;

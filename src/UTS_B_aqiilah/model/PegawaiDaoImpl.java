@@ -13,7 +13,9 @@ public class PegawaiDaoImpl implements PegawaiDao {
     List<Pegawai> data = new ArrayList();
     
     public PegawaiDaoImpl(){
-        data.add(new Pegawai("1122","aqiil","padang"));
+        data.add(new Pegawai("101","aqiil","padang"));
+        data.add(new Pegawai("102","qila","pariaman"));
+        data.add(new Pegawai("103","aqiilah","batusangkar"));
     }
     
     public void insert(Pegawai pegawai){

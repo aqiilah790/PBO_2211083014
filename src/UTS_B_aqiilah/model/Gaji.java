@@ -11,17 +11,23 @@ package UTS_B_aqiilah.model;
 public class Gaji {
     private Pegawai pegawai;
     private String golongan;
-    private int tanggal;
+    private String tanggal;
     private double gajipokok;
     private double tunjangananak;
     private double tunjanganistri;
+    private double gajibersih;
     
     public Gaji(){}
     
-    public Gaji(Pegawai pegawai, String golongan, int tanggal){
+    public Gaji(Pegawai pegawai, String golongan, String tanggal){
         this.pegawai = pegawai;
         this.golongan = golongan;
         this.tanggal = tanggal;
+        setGajipokok(golongan);
+        setTunjangananak();
+        setTunjanganistri();
+        setGajibersih();
+        
     }
     
     public Pegawai getPegawai(){
@@ -32,7 +38,7 @@ public class Gaji {
         return golongan;
     }
     
-    public int getTanggal(){
+    public String getTanggal(){
         return tanggal;
     }
     
@@ -48,39 +54,50 @@ public class Gaji {
         return tunjanganistri;
     }
     
+    public double getGajibersih(){
+        return gajibersih;
+    }
+    
     public void setPegawai(Pegawai pegawai){
         this.pegawai = pegawai;
     }
     
-    public void setGolongan(String golongan, double gajipokok){
-        String IIIA = null;
-        String IIIB = null;
-        String IIIC = null;
-        if(golongan == IIIA){
-            gajipokok = 1000000;
-        }else if(golongan == IIIB){
-            gajipokok = 2000000;
-        }else if(golongan == IIIC){
-            gajipokok = 3000000;
-        }
+    public void setGolongan(String golongan){
+        this.golongan = golongan;
     }
     
-    public void setTanggal(int tanggal){
+    public void setTanggal(String tanggal){
         this.tanggal = tanggal;
     }
     
-    public void setGajipokok(double gajibersih, double gajipokok, double tunjangananak, double tunjananistri){
-        gajibersih = gajipokok + tunjangananak + tunjanganistri;
-        this.gajipokok = gajipokok;
+    public void setGajipokok(String golongan){
+       if(golongan.equals("IIIA")){
+            gajipokok = 1000000;
+        }
+        else if(golongan.equals("IIIB")){
+            gajipokok = 2000000;
+        }
+        else if(golongan.equals("IIIC")){
+            gajipokok = 3000000;
+        }
+        else{
+            gajipokok =0;
+            System.out.println("Error!!! Golongan tidak valid");
+        }
     }
     
-    public void setTunjangananak(double tunjangananak, double gajipokok){
+    public void setTunjangananak(){
         tunjangananak = gajipokok * 5/100;
         this.tunjangananak = tunjangananak;
     }
     
-    public void setTunjanganistri(double tunjanganistri, double gajipokok){
+    public void setTunjanganistri(){
         tunjanganistri = gajipokok * 5/100;
         this.tunjanganistri = tunjanganistri;
+    }
+    
+    public void setGajibersih(){
+        gajibersih = gajipokok + tunjangananak + tunjanganistri;
+        this.gajibersih = gajibersih;
     }
 }

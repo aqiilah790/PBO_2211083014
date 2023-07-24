@@ -14,8 +14,9 @@ public class GajiDaoImpl implements GajiDao {
     
     public GajiDaoImpl(){
         PegawaiDaoImpl data1 = new PegawaiDaoImpl();
-        data.add(new Gaji(data1.getPegawai(0),"",0));
-        data.add(new Gaji(data1.getPegawai(1),"",0));
+        data.add(new Gaji(data1.getPegawai(0),"IIIA","15/06/2022"));
+        data.add(new Gaji(data1.getPegawai(1),"IIIC","15/06/2022"));
+        data.add(new Gaji(data1.getPegawai(2),"IIIB","15/06/2022"));
         
     }
     
